@@ -9,5 +9,14 @@ There is no automated test for this one, this is more for you to understand time
 */
 
 function calculateTime(n) {
-    return 0.01;
+    const begin= new Date().getTime();
+    let sum=0;
+    for(let i=1;i<=n;i++) sum+=i;
+    console.log(sum);
+    const end =new Date().getTime();
+    console.log("time delay is ",end-begin,"miliseconds");
+    return sum;
+
 }
+calculateTime(1000000000);
+calculateTime(1000);
