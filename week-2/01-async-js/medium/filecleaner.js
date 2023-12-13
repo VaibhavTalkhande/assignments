@@ -1,14 +1,13 @@
 let file =require('fs');
 let textdata;
-file.readFile('a.txt','utf-8',(err,data)=>{
+file.readFileSync('a.txt','utf-8',(err,data)=>{
     if(err) throw err;
     textdata = data.replace(/\s+/g,' ').trim();
-    file.writeFile('a1.txt',textdata,()=> console.log("success"))
+    file.writeFileSync('a1.txt',textdata,()=> console.log("success"))
 })
-setTimeout(()=>{
-    file.readFile('a1.txt','utf-8',(err,data)=>{
-        if(err) throw err;
-        console.log(data);
-    })
-}
-,5000)
+
+file.readFileSync('a1.txt','utf-8',(err,data)=>{
+    if(err) throw err;
+    console.log(data);
+})
+
