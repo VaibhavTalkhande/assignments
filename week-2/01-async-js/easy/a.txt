@@ -1,0 +1,7 @@
+O] [streamChoices] [2023-12-13T11:11:40.060Z] request done: headerRequestId: [e7b7c795-44c4-4e3c-acff-8de102346c87] model deployment ID: [x878ecfd0739c]
+[INFO] [code-referencing] [2023-12-13T11:11:49.818Z] Calling Match
+[INFO] [ghostText] [2023-12-13T11:11:49.907Z] Found inline suggestions locally
+[INFO] [ghostText] [2023-12-13T11:11:49.910Z] Filtered out solution matching next line
+[INFO] [code-referencing] [2023-12-13T11:11:50.200Z] No match foundHello World
+Hello World
+Hello World
