@@ -40,10 +40,57 @@
   Testing the server - run `npm run test-todoServer` command in terminal
  */
   const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
+  const bodyParser = require('body-parser');// parse application/x-www-form-urlencoded to JSON
+ const todos = [];
+ 
+  const app = express();// create express app 
+  app.use(bodyParser.json());// parse application/json
+  app.get("/todos",(req, res) => {
+    res.status(200).json(todos);
+  })
+  app.post("/todos",(req,res)=>{
+   const id = Math.floor(Math.random()*1000);
+      const todo = req.body;
+      todo.id = id;
+      todos.push(todo);
+      res.status(201).json({id:todo.id});
+    })
+  app.put("/todos/:id",(req,res)=>{
+    const id = req.params.id;
+    const todo = req.body;
+    const todoUpdate= todos.find((todo)=>todo.id ==id);
+    if(todoUpdate){
+      todoUpdate.title = todo.title;
+      todoUpdate.description = todo.description;
+      res.status(200).json(todos);
+    }
+    else{
+      res.status(404).json({message:"Route not found"});
+    }
+  })
+  app.delete("/todos/:id",(req,res)=>{
+    const id = req.params.id;
+    const todoIndex = todos.findIndex((todo)=>todo.id ==id);
+     if(todoIndex>=0){
+       todos.splice(todoIndex,1);
+       res.status(200).json({message:"Deleted"});
+     }
+     else{
+       res.status(404).json({message:"Not Found"});
+     }
+   }
+  );
+  app.get("/todos/:id",(req,res)=>{
+    const id = req.params.id;
+    const todo = todos.find((todo)=>todo.id ==id);
+    if(todo){
+      res.status(200).json(todo);
+    }
+    else{
+      res.status(404).json({message:"Route not found"});
+    }
+  })
+  app.all('*',(req,res)=>{
+      res.status(404).send('Route not found');
+  })
   module.exports = app;
