@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017').then(() => {
+mongoose.connect("mongodb+srv://vaibhavtalkhande41:123@cluster0.2cgidvl.mongodb.net/?retryWrites=true&w=majority").then(() => {
     console.log('Connected to MongoDB');
 }
 ).catch((err) => {
@@ -22,12 +22,20 @@ const AdminSchema = new mongoose.Schema({
         minlength: 3,
         maxlength: 20
     },
+    courses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    }]
 });
 
 const UserSchema = new mongoose.Schema({
     // Schema definition here
     "username": String,
     "password": String,
+    "courses": {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    }
 
 });
 
